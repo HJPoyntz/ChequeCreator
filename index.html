@@ -8,16 +8,32 @@
     <!-- Tailwind -->
     <link rel="stylesheet" href="dist\output.css">
     <link rel="stylesheet" href="styles.css">
-    <title>ChequeCreator</title>
+    <title>Cheque Creator</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,100&family=Send+Flowers&display=swap');
+    </style>
+
 </head>
 
-<body class='flex flex-col h-screen justify-center items-center'>
+<body >
+
+    <!-- This is a spinner for while the page loads in the background -->
+    <div class="flex flex-row bg-white h-screen w-screen justify-center items-center z-50 absolute" id="loaderBackground">
+        <span class="text-6xl mr-10 text-sky-600 ">Cheque Creator Loading</span>
+        <div class="flex justify-center items-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-sky-600"></div>
+          </div>
+    </div>
+
+    <!-- This is the body of the form for the web page -->
+    <div class='flex flex-col h-screen justify-center items-center' id="formPageBody">
     <!-- Title of Application -->
-    <h1 class="text-sky-300 text-4xl">Cheque Creator</h1>  
+    <h1 class="text-sky-300 text-6xl font-extrabold z-1" style="font-family: 'Send Flowers', cursive;">Cheque Creator</h1>  
 
       <!-- Container for the form  -->
-      <div class="w-full max-w-4xl align-middle mt-4">
-        <form class="bg-sky-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" autocomplete="on">
+      <div id="formContainer" class="w-full max-w-4xl align-middle mt-4 z-1">
+        <form class="bg-sky-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" autocomplete="on" id="chequeForm">
           
             <!-- Grid Container for the text inputs -->
             <div class="grid grid-cols-2 grid-rows-2 gap-1 content-center">
@@ -27,11 +43,11 @@
                     <div class="text-white underline decoration-2 font-bold">Your details</div>
                         <!-- Grid container for senders detail input forms -->
                         <div class="grid grid-rows-5 grid-cols-2 content-center mt-4 gap-y-4">
-                            <label class="inline" for="fname">First Name</label><input id="fname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Harry">
-                            <label for="lname">Last Name</label><input id="lname" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Poyntz">                            
-                            <label for="hnumber">House Number / Name</label><input id="hnumber" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. 11">
-                            <label for="rname">Road Name</label><input id="rname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Knightswick Road">
-                            <label for="postcode">Postcode</label><input id="postcode" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. SS89PA">
+                            <label class="inline" for="fname">First Name</label><input id="fname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Harry" required>
+                            <label for="lname">Last Name</label><input id="lname" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Poyntz" required>                            
+                            <label for="hnumber">House Number / Name</label><input id="hnumber" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. 11" required>
+                            <label for="rname">Road Name</label><input id="rname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Knightswick Road" required>
+                            <label for="postcode">Postcode</label><input id="postcode" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. SS89PA" required>
 
                             <!-- ID's fname = First Name, lname = Last Name, hnumber = House Number, rname = Road Name, postcode = Postcode -->
                         </div>    
@@ -42,8 +58,8 @@
                     <div class="text-center text-white underline decoration-2 font-bold">Who would you like to pay?</div>
                     <!-- Grid container for recipients input forms -->
                     <div class="grid grid-rows-2 grid-cols-2 content-center mt-4 gap-y-1">
-                        <label class="inline" for="recipientfname">First Name</label><input id="recipientfname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Harry">
-                        <label for="recipientlname">Last Name</label><input id="recipientlname" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Poyntz">
+                        <label class="inline" for="recipientfname">First Name</label><input id="recipientfname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. James" required>
+                        <label for="recipientlname">Last Name</label><input id="recipientlname" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Poyntz" required>
 
                         <!-- ID's recipientfname = Recipient's First Name, recipientlname = Recipient's Last Name -->
                     </div>
@@ -53,9 +69,9 @@
                     <div class="text-center text-white underline decoration-2 font-bold">Payment Information</div>
                     <!-- Grid container for payment input forms -->
                     <div class="grid grid-rows-3 grid-cols-2 content-center gap-y-1">                   
-                        <label class="float-right" for="amount">Amount<span class="float-right mt-1">£</span></label><input id="amount" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="number" placeholder="eg. £15">
-                        <label for="reference">Payment Reference</label><input id="reference" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Takeaway">
-                        <label for="date">Today's Date</label><input id="date" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="date" placeholder="MM/DD/YY">
+                        <label class="float-right" for="amount">Amount<span class="float-right mt-1">£</span></label><input id="amount" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="number" placeholder="eg. £15" required>
+                        <label for="reference">Payment Reference</label><input id="reference" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Takeaway" required>
+                        <label for="date">Today's Date</label><input id="date" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="date" placeholder="MM/DD/YY" required>
 
                         <!-- ID's amount = Amount of £, reference = Payment reference, date = Today's Date -->
                     </div>
@@ -65,7 +81,7 @@
             
           
           <div class="flex items-center justify-center mt-5">
-            <button class="bg-slate-50 hover:bg-slate-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            <button class="bg-slate-50 hover:bg-slate-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" id="createCheque">
               Create your Cheque
             </button>          
           </div>
@@ -73,6 +89,12 @@
       </div>
 
       <h2>Made by Harry Poyntz</h2>
+    </div>
 
+    <!-- jQuery -->
+    <script type="text/javascript" src="scripts\jQuery\jquery-3.6.0.min.js"></script>
+
+    <!-- Main Script File -->
+    <script type="text/javascript" src="scripts\script.js"></script>
 </body>
 </html>
