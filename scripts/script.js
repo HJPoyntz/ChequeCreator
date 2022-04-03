@@ -68,8 +68,19 @@ $(document).ready(function () {
       // Pushes all the form data to an array
       formDataArray.push(fName ,lName, hNumber, rName, postcode, recipientFName, recipientLName, amount, reference, date);
 
+      // Calls the PHP function
       createCheque(formDataArray);
 
+      // Formats the create button to indicate to the user that the page is loading.
+      $('#createCheque').html("Creating your Cheque");
+      $("#createCheque").removeClass("bg-slate-50");
+      $("#createCheque").css('background-color', '#CBD5E1');
+      // Appends the Spinner to the submit button
+      $("#createCheque").append(`<div id="creatingChequeSpinner" class="flex justify-center items-center">
+      <div style="height: 16px; width: 16px;"  class="animate-spin rounded-full border-b-2 border-sky-600 "></div>
+      </div> `);
+
+      // Prevents page from refreshing
       return false;
     });
 
