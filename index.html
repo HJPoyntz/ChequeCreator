@@ -26,8 +26,8 @@
         </div>
     </div>
 
-    <!-- This is the body of the form for the web page !!!!!!!!!!!!!!!!!!!!!!!!! Temporarily display:none; while building cheque-->
-    <div style="display: none;" class='flex flex-col h-screen justify-center items-center' id="formPageBody">
+    <!-- This is the body of the form for the web page -->
+    <div class='flex flex-col h-screen justify-center items-center' id="formPageBody">
     <!-- Title of Application -->
     <h1 class="text-sky-300 text-6xl font-extrabold z-1" style="font-family: 'Send Flowers', cursive;">Cheque Creator</h1>  
 
@@ -92,7 +92,7 @@
     </div>
 
     <!-- This is the container for the cheque -->
-    <div id="chequeContainer" class='flex flex-col h-screen justify-center items-center'>
+    <div id="chequeContainer" style="display: none;" class='flex flex-col h-screen justify-center items-center'>
         <!-- Title of Application -->
         <h1 class="text-sky-300 text-6xl font-extrabold z-1" style="font-family: 'Send Flowers', cursive;">Cheque Creator</h1>
         <!-- Cheque -->
@@ -100,40 +100,72 @@
             <div class="bg-sky-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 z-1">
                 <div style="background-image: url('media/images/chequeBackgroundImage.jpg');" class="h-60 w-full bg-no-repeat bg-cover shadow-md z-5">
                     <!-- Grid container for the inside of the cheque -->
-                    <div class="border-4 border-black grid grid-rows-6 grid-cols-2 content-center place-content-evenly mt-4 gap-y-4 h-full">
+                    <div class="border-4 border-black grid grid-rows-6 grid-cols-2 content-center place-content-evenly mt-4 gap-y-4 h-full ">
                         <!-- Sender's Info Section -->
                         <div id="senderInfo" style="padding-left: 1%;" class="flex flex-col text-xs">
                             <div class="font-extrabold"><span id="senderFName">Harry</span> <span id="senderLName">Poyntz</span></div>                      
-                            <div id="senderHouseNum"><span  id="senderHouseNum">11</span><span  id="senderRoadName">Knightswick Road</span></div>                           
+                            <div id="senderHouseNum"><span id="senderHouseNum">11</span><span id="senderRoadName">Knightswick Road</span></div>                           
                             <div id="senderPostCode">SS73HF</div>
                         </div>
                         <!-- Today's Date Section -->
-                        <div class="text-center">
-                            <div class="flex flex-row">                               
-                                <div>DD</div>
-                                <div>MM</div>
-                                <div>YY</div>                               
-                            </div>
-                            <div class="flex flex-row">
-                                <div>DATE</div>
-                                <div>DD</div>
-                                <div>MM</div>
-                                <div>YY</div>                               
+                        <div class="text-center text-xs">
+                            <div class="grid grid-rows-2 grid-cols-4 max-w-xs mr-64">
+                                <div></div>
+                                <div class="bg-white italic text-blue-600">18</div>
+                                <div class="bg-white italic text-blue-600">12</div>
+                                <div class="bg-white italic text-blue-600">2000</div>
+                                <div class="font-extrabold">DATE</div>
+                                <div class="font-bold">DD</div>
+                                <div class="font-bold">MM</div>
+                                <div class="font-bold">YY</div>
                             </div>
                         </div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div ><div class="text-center">5</div></div>
-                        <div>6</div>
-                        <div>7</div>
-                        <div>8</div>
-                        <div>9</div>
-                        <div>10</div>
-                        <div class="bg-white col-span-2 text-black text-center"><span style="white-space:nowrap" class="break-normal mr-64">00 : ¦:00000|: 000000◾</span></div>
+                        <!-- Recipient's Information -->
+                        <div>
+                            <div class="flex flex-row align-text-bottom ">
+                                <div class="text-xs text-left mt-auto pt-2 pl-1 font-bold">Pay to the order of:</div>
+                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600">James Poyntz</div>
+                            </div>
+                        </div>
+                        <!-- Amount Information -->
+                        <div class="max-w-xs">                           
+                            <div class="text-blue-600 text-3xl text-right pr-16 float-left pl-5  w-fit"><span style="font-family: 'Send Flowers', cursive;" class="bg-white">£15,000,000</span></div>
+                        </div>
+                        <!-- Amount formatted to text -->
+                        <div class="col-span-2 border-b-2 border-black ml-1 mr-20 text-1xl text-blue-600 pl-8"><span style="font-family: 'Send Flowers', cursive;">15 Million</span></div>
+                        <div class="text-xs pl-1">Bank of Harry<br>10 Downing Street</div>
+                        <div></div>
+                        <!-- Payment Reference -->
+                        <div>
+                            <div class="flex flex-row align-text-bottom ">
+                                <div class="text-xs text-left mt-auto pt-2 pl-1 font-bold">Statement</div>
+                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600 ml-2 pl-2">Takeaway</div>
+                            </div>
+                        </div>
+                        <!-- Recipient Name -->
+                        <div>
+                            <div class="flex flex-row align-text-bottom ">
+                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600 ml-2 pl-2"><span>Harry</span><span> Poyntz</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white col-span-2 text-black text-center"><span style="white-space:nowrap" class="break-normal mr-64">00◾: ¦:00000|: 000000◾</span></div>
                     </div>
                 </div>
+                <div class="flex items-center justify-center mt-5">
+                    <button class="bg-slate-50 hover:bg-slate-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" id="createAnotherCheque">
+                      Create Another Cheque                      
+                    </button>                    
+                </div>   
+                                   
+              </div>  
+              <h2 class="text-center">Made by Harry Poyntz</h2>  
             </div>
+            
         </div>
+
+         
+      
     </div>
 
     <!-- jQuery -->
