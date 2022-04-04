@@ -12,8 +12,9 @@
     $test = $array[7];
     $f = new \NumberFormatter( locale_get_default(), \NumberFormatter::SPELLOUT );
     $word = $f->format($test);
+    $wordFormatted = ucfirst($word);
     // adds the text equivalent to the end of the array
-    array_push($array, $word);
+    array_push($array, $wordFormatted);
 
 
     

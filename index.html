@@ -43,11 +43,11 @@
                     <div class="text-white underline decoration-2 font-bold">Your details</div>
                         <!-- Grid container for senders detail input forms -->
                         <div class="grid grid-rows-5 grid-cols-2 content-center mt-4 gap-y-4">
-                            <label class="inline" for="fname">First Name</label><input id="fname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Harry" required>
-                            <label for="lname">Last Name</label><input id="lname" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Poyntz" required>                            
-                            <label for="hnumber">House Number / Name</label><input id="hnumber" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. 11" required>
-                            <label for="rname">Road Name</label><input id="rname" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Knightswick Road" required>
-                            <label for="postcode">Postcode</label><input id="postcode" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. SS89PA" required>
+                            <label class="inline" for="fname">First Name</label><input id="fname" maxlength="15" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Harry" required>
+                            <label for="lname">Last Name</label><input id="lname" maxlength="15" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Poyntz" required>                            
+                            <label for="hnumber">House Number / Name</label><input id="hnumber" maxlength="15" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. 11" required>
+                            <label for="rname">Road Name</label><input id="rname" maxlength="25" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Knightswick Road" required>
+                            <label for="postcode">Postcode</label><input id="postcode" maxlength="8"  class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. SS89PA" required>
 
                             <!-- ID's fname = First Name, lname = Last Name, hnumber = House Number, rname = Road Name, postcode = Postcode -->
                         </div>    
@@ -69,8 +69,8 @@
                     <div class="text-center text-white underline decoration-2 font-bold">Payment Information</div>
                     <!-- Grid container for payment input forms -->
                     <div class="grid grid-rows-3 grid-cols-2 content-center gap-y-1">                   
-                        <label class="float-right" for="amount">Amount<span class="float-right mt-1">£</span></label><input id="amount" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="number" placeholder="eg. £15" required>
-                        <label for="reference">Payment Reference</label><input id="reference" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Takeaway" required>
+                        <label class="float-right" for="amount">Amount<span class="float-right mt-1">£</span></label><input id="amount" type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="20" class="ml-1 shadow border rounded py-1 px-1 focus:outline-none" placeholder="eg. £15" required>
+                        <label for="reference">Payment Reference</label><input id="reference" maxlength="25" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="text" placeholder="eg. Takeaway" required>
                         <label for="date">Today's Date</label><input id="date" class="inline ml-1 shadow border rounded py-1 px-1 focus:outline-none" type="date" placeholder="MM/DD/YY" required>
 
                         <!-- ID's amount = Amount of £, reference = Payment reference, date = Today's Date -->
@@ -94,7 +94,7 @@
     <!-- This is the container for the cheque -->
     <div id="chequeContainer" style="display: none;" class='flex flex-col h-screen justify-center items-center'>
         <!-- Title of Application -->
-        <h1 class="text-sky-300 text-6xl font-extrabold z-1" style="font-family: 'Send Flowers', cursive;">Cheque Creator</h1>
+        <h1 class="text-sky-300 text-6xl font-extrabold z-1 " style="font-family: 'Send Flowers', cursive;">Cheque Creator</h1>
         <!-- Cheque -->
         <div id="cheque" class="w-full max-w-4xl align-middle mt-4">
             <div class="bg-sky-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 z-1">
@@ -102,18 +102,18 @@
                     <!-- Grid container for the inside of the cheque -->
                     <div class="border-4 border-black grid grid-rows-6 grid-cols-2 content-center place-content-evenly mt-4 gap-y-4 h-full ">
                         <!-- Sender's Info Section -->
-                        <div id="senderInfo" style="padding-left: 1%;" class="flex flex-col text-xs">
+                        <div id="senderInfo" style="padding-left: 1%;" class="flex flex-col text-xs mobile:text-xxs">
                             <div class="font-extrabold"><span id="senderFName">Harry</span> <span id="senderLName">Poyntz</span></div>                      
-                            <div id="senderHouseNum"><span id="senderHouseNum">11</span><span id="senderRoadName">Knightswick Road</span></div>                           
+                            <div><span id="senderHouseNum">11</span><span id="senderRoadName"></span></div>                           
                             <div id="senderPostCode">SS73HF</div>
                         </div>
                         <!-- Today's Date Section -->
-                        <div class="text-center text-xs">
-                            <div class="grid grid-rows-2 grid-cols-4 max-w-xs mr-64">
+                        <div class="text-center text-xs mobile:text-xxs ">
+                            <div class="grid grid-rows-2 grid-cols-4 max-w-xs mr-64 mobile:gap-x-6">
                                 <div></div>
-                                <div class="bg-white italic text-blue-600">18</div>
-                                <div class="bg-white italic text-blue-600">12</div>
-                                <div class="bg-white italic text-blue-600">2000</div>
+                                <div id="day" class="bg-white italic text-blue-600">18</div>
+                                <div id="month" class="bg-white italic text-blue-600">12</div>
+                                <div id="year" class="bg-white italic text-blue-600">2000</div>
                                 <div class="font-extrabold">DATE</div>
                                 <div class="font-bold">DD</div>
                                 <div class="font-bold">MM</div>
@@ -123,29 +123,29 @@
                         <!-- Recipient's Information -->
                         <div>
                             <div class="flex flex-row align-text-bottom ">
-                                <div class="text-xs text-left mt-auto pt-2 pl-1 font-bold">Pay to the order of:</div>
-                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600">James Poyntz</div>
+                                <div class="text-xs text-left mt-auto pt-2 pl-1 font-bold mobile:text-xxs">Pay to the order of:</div>
+                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600 mobile:text-xs"><span id="recipientFirstName"></span><span id="recipientLastName"></span></div>
                             </div>
                         </div>
                         <!-- Amount Information -->
                         <div class="max-w-xs">                           
-                            <div class="text-blue-600 text-3xl text-right pr-16 float-left pl-5  w-fit"><span style="font-family: 'Send Flowers', cursive;" class="bg-white">£15,000,000</span></div>
+                            <div class="text-blue-600 text-3xl text-right pr-16 float-left pl-5  w-fit mobile:text-xs"><span id="amountInDigits" style="font-family: 'Send Flowers', cursive;" class="bg-white"></span></div>
                         </div>
                         <!-- Amount formatted to text -->
-                        <div class="col-span-2 border-b-2 border-black ml-1 mr-20 text-1xl text-blue-600 pl-8"><span style="font-family: 'Send Flowers', cursive;">15 Million</span></div>
-                        <div class="text-xs pl-1">Bank of Harry<br>10 Downing Street</div>
+                        <div class="col-span-2 border-b-2 border-black ml-1 mr-20 text-1xl h-max text-blue-600 pl-8 mobile:text-xxs"><span id="amountInText"  style="font-family: 'Send Flowers', cursive;">15 Million</span></div>
+                        <div style="padding-top: 10px;" class="text-xs pl-1 mobile:text-xxs">Bank of Harry<br>10 Downing Street</div>
                         <div></div>
                         <!-- Payment Reference -->
                         <div>
-                            <div class="flex flex-row align-text-bottom ">
-                                <div class="text-xs text-left mt-auto pt-2 pl-1 font-bold">Statement</div>
-                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600 ml-2 pl-2">Takeaway</div>
+                            <div class="flex flex-row align-text-bottom  h-full ">
+                                <div class="text-xs text-left mt-auto pt-2 pl-1 font-bold mobile:text-xxs">Statement</div>
+                                <div id="paymentReference" style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-lg text-blue-600 ml-2 pl-2 mobile:text-xs">Takeaway</div>
                             </div>
                         </div>
                         <!-- Recipient Name -->
                         <div>
-                            <div class="flex flex-row align-text-bottom ">
-                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-3xl text-blue-600 ml-2 pl-2"><span>Harry</span><span> Poyntz</span></div>
+                            <div class="flex flex-row align-text-bottom  h-full ">
+                                <div style="font-family: 'Send Flowers', cursive;" class="border-b-2 border-black w-full text-lg text-blue-600 ml-2 pl-2 mobile:text-xs w-full"><span id="senderFirstNameBottom">Harry</span><span id="senderLastNameBottom"> Poyntz</span></div>
                             </div>
                         </div>
                         

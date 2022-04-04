@@ -85,8 +85,6 @@ $(document).ready(function () {
               let senderRoadName = result['data'][3];
               let senderPostCode = result['data'][4];
 
-              console.log(`Test Roadname ${senderRoadName}`);
-
               let recipientFirstName = result['data'][5];
               let recipientLastName = result['data'][6];
 
@@ -97,14 +95,30 @@ $(document).ready(function () {
               let day = result['data'][12][2];
               let month = result['data'][12][1];
               let year = result['data'][12][0];
+              
 
               // jQuery DOM manipulation inside of the cheque
                 // Sets the top left address information & name
                 $('#senderFName').html(senderFirstName);
                 $('#senderLName').html(senderLastName);
                 $('#senderHouseNum').html(senderRoadNum);
-                $('#senderRoadName').html(senderRoadName);
+                $('#senderRoadName').html(` ${senderRoadName}`);
                 $('#senderPostCode').html(senderPostCode);
+                // Sets the name of the recipient on the cheque
+                $('#recipientFirstName').html(recipientFirstName);
+                $('#recipientLastName').html(` ${recipientLastName}`);
+                // Sets the amount ,the amount in text & the payment reference
+                $('#amountInDigits').html(amountFormatted);
+                $('#amountInText').html(amountInText);
+                $('#paymentReference').html(reference);
+                // Sets the name of the sender in the bottom right
+                $('#senderFirstNameBottom').html(senderFirstName);
+                $('#senderLastNameBottom').html(` ${senderLastName}`);
+                // Sets the date in the top right
+                $('#day').html(day);
+                $('#month').html(month);
+                $('#year').html(year);
+
             } 
           }, error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
